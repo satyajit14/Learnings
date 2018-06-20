@@ -1,0 +1,55 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GIT~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Created By: Satyajit Giri
+Created On: June 20, 2018
+Modified By: Satyajit Giri
+Modified On: June 20, 2018
+##############################################################################################################################
+
+
+##################################################~~Introduction~~############################################################
+
+- Version control system - tracks changes in version for files in computer systems
+- Any language works
+- Locally you can work without internet
+- Take snapshots - with commit: allows you to see and revert back to earlier versions
+
+
+#####~~Basic Commands~~#####
+1. go to a folder:
+  - create git init
+  - git add <file> puts file in staging area
+  - git rm --cached <file> removes file
+  - git status: checks status of files in staging area/index
+  - git commit: puts things in staging area and put it into the local repository
+
+2. Remote repository:
+  - git push: push to remote repository
+  - git pull: pulls from remote repository
+  - git clone: clones a repository from a preexisting one
+#################################################################################################################################
+
+####################################################~~Setting Up~~###############################################################
+3. Installation:
+
+sudo apt-get install Git
+
+4. Jumping between branches:
+  - create a branch: git branch <branch_name>
+  - jumping from master to branch: git checkout <branch_name>
+  - jumping from branch to master: git checkout master
+  - merging branch with master: git merge <branch_name>
+  - show all your branches: git branch -a
+  - delete a branch: git branch -d <branch_name>
+#################################################################################################################################
+
+#################################################~~Remote Repositories~~#########################################################
+5. Working with remote repositories (your 10 imaging github account):
+  - go to your github account
+  - click on create a new repository, fill in details and create the repository
+  - find the line with git remote add <remotebranchname> <link to your github repository>
+      Example: git remote add origin https://github.com/satyajit14/test.git
+  - put it in terminal in the directory that you are interested in (remember you should have used git init there first)
+  - see if remote branch was added: git remote
+  - push local to online repository using: git push -u <remotebranchname> master
+
+#################################################################################################################################

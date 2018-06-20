@@ -1,0 +1,117 @@
+Caffe:
+
+1. From Berkely
+2. Written in C++
+3. Has Python and MATLAB bindings
+4. Good for training or finetuning feedforward networks
+5. Don't be afraid to read the code!
+
+Four classes:
+1. BLOB: Stores all the data, weights, labels, activations and derivatives
+  - N dimensional tensor
+  - 4 versions ~ Data (storing the actual raw data) and Diffs (stroes gradients with respect to that data), both in GPU and CPU
+2. LAYER: It's a function recieves input Blobs (bottoms) and produces output Blobs (tops)
+  - recieves pointers to top and bottome blobs.
+  - bottom blobs will have data filled in
+3. NET: Connects a lot of layers, solves forward and backward
+4. SOLVER: Dip into the net, run it forwards and backward, update parameters and keep track of check points
+
+Protocol Buffers:
+
+-Kind of like JSONs
+- .proto file which defines classes and different kinds of fields
+- .prototxt is an instance of a prototxt
+- protobuff compiler produces classes in each languages which you can they import into your Confidential
+~~~read caffe.proto~~~
+
+
+Caffe Training/Finetuning (Literally no need to run a code):
+
+1. Convert data (run a script)
+    - HDF5: format for storing pixels on disc contiguously so that they can be read efficiently
+    - By default Caffe uses LMDB:
+        - Each image with a label:
+        - Create a text file where each line is:
+          '[path/tofile] [class]'
+        -Easiest way
+
+2. Define net (edit prototxt)
+    - Define every layer in the model you want to run (input layer, fc layers, loss layers, etc.)
+    - Can become complicated for really large networks (Have to explicitly write each layer)
+    - Most people use scripts to generate each of these layers
+
+    Finetuning:
+    - If the names of a layer match pretrained weight's name then it loads that value otherwise initializes from scrath
+
+
+3. Define solver (edit prototxt)
+
+4. Train (run a script)
+
+    ##################################################
+    ./build/tools/caffe train \
+      -gpu 0 \
+      -model path/to/trainval.prototxt \
+      -solver path/to/solver.prototxt \
+      -weights path/to/pretrained_weights.caffemodel
+    ###################################################
+
+    Note:
+     - gpu all (for multi-GPU data parallelism)
+     - gpu -1 (for CPU)
+
+
+Model Zoo
+
+  1. A lot of models already pretrained.
+  2. Really strong point for Caffe
+
+Python Interface:
+    - Easy to use
+    - Can quickly manipulate data
+    - get intermediate features
+    - write custom layers (esp might be useful for writing custom loss layers)
+    - NEGATIVE (as of 2016): Can only run on CPU if you use python
+
+CAFFE Pros:
+
+1. Good for feedforward networks
+2. Really easy to play with pretrained models and finetune them
+3. You can train models without writing any specific codes
+4. Python interface is useful
+
+CAFFE Cons:
+
+1. Not great for complex networks like RNNs where we need to do things liek share weights
+2. Prototxt can get really complex for large networks like GoogLeNet
+3. Need to write your own C++ and CUDA to make your own custom GPU layer
+
+
+TensorFlow:
+
+~Introduction~
+  1. From Google (from the ground up made by professionals, code quality might be better because of this)
+  2. Based on computation graph
+
+~Tensorboard~
+
+Lets you easily visualize of what's going on.
+
+~Multiple GPU~
+1. Data parallelism
+2. Model parallelism too!
+3. Can also work in distributed mode! (as of 2016 not open source though .. [sad ): ] )
+
+~Pretrained Models~~
+
+Not a lot of models that exist
+
+~Pros~
+1. Compile times are faster
+2. Tensorboard is cool
+3. Distributed and parallelism
+
+~Cons~
+1. Scariest to understand backend
+2. Lack of pretrained Models
+3. Slower than other models as of right now

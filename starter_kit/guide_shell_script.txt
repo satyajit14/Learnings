@@ -1,0 +1,64 @@
+########################################~~SHELL SCRIPTING~~#####################################################
+
+
+1. Create a file with .sh extension in any text editor
+2. Start the file with: #!/bin/bash
+    - this tells ubuntu that this is supposed to be executed by bash
+3. Echo statements:
+    - echo "Hello World"
+    - kind of like a print statement
+
+4. Variable creation:
+    - myName="Satyajit"
+    - Note:
+        - all variables are stored as strings
+        - during variable creation do not have any white spaces around the "=" signs
+
+5. Declaring constants:
+    - declare -r NUM1=5
+
+6. Arithmetic operation:
+    - echo $((5+4))
+    - generally non st
+7. Function definitions:
+    myfunction(){
+      echo "This is from a function"
+      var="Success"
+
+      return var
+    }
+
+    myfunction
+
+8. Conditional Statements:
+
+    1. Format:
+      if [[-e file.txt]]; then
+        do something
+      else
+        do something
+      fi
+
+    2. Common examples if if statements:
+      -e file
+          True if file exists
+      -d file
+          True if file exists and is a directory.
+      -f file
+          True if file exists and is a regular file.
+      -z string
+          True if empty string
+      -n string
+          True if not empty string
+      string1 = string2
+          True if string1 and string2 are equal.
+      string == pattern
+          True if string matches pattern. (pattern has the same form as a pattern in filename expansion; for example, unquoted * means "zero or more characters".)
+      string != pattern
+          True if string does not match pattern.
+
+9. For loops:
+    1. Format:
+      for i in {1..10} ; do
+        echo i
+      done
